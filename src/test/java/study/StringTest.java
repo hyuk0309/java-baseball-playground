@@ -31,4 +31,14 @@ public class StringTest {
         assertThat(actual).containsExactly("1");
     }
 
+    @Test
+    void substring() {
+        //given
+        //when
+        String actual = "(1,2)".substring(1, 4);
+
+        //then
+        assertThat(actual).isEqualTo("1,2");
+    }
+
 }
