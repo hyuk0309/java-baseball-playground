@@ -1,12 +1,15 @@
 package study;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
 
@@ -29,7 +32,16 @@ public class SetTest {
 		int actual = numbers.size();
 
 		//then
-		Assertions.assertThat(actual).isEqualTo(3);
+		assertThat(actual).isEqualTo(3);
 	}
 
+	@DisplayName("Set contains() 메소드 학습 테스트")
+	@ParameterizedTest
+	@ValueSource(ints = {1, 2, 3})
+	void contains(int num) {
+		//given
+		//when
+		//then
+		assertThat(numbers.contains(num)).isTrue();
+	}
 }
