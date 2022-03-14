@@ -7,25 +7,34 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
 
+import stringcalculator.collection.OperandList;
+import stringcalculator.collection.OperatorList;
+
 public class StringCalculator {
 
-	private final Set<String> op = new HashSet<>();
-	private final Deque<Integer> operands = new LinkedList<>();
-	private final Queue<String> operators = new LinkedList<>();
+	private final Set<String> operator;
+	private final BinaryCalculator binaryCalculator;
 
 	public StringCalculator() {
-		op.add("+");
-		op.add("-");
-		op.add("*");
-		op.add("/");
+		binaryCalculator = new BinaryCalculator();
+		operator = new HashSet<>();
+		operator.add("+");
+		operator.add("-");
+		operator.add("*");
+		operator.add("/");
 	}
 
 	public Integer calculateString(String input) {
-		input(input);
-		return calculate();
+		Deque<Integer> operands = new LinkedList<>();
+		Queue<String> operators = new LinkedList<>();
+		input(input, operands, operators);
+
+		OperatorList operatorList = new OperatorList(operators);
+		OperandList operandList = new OperandList(operands);
+		return binaryCalculator.calculate(operandList, operatorList);
 	}
 
-	private void input(String input) {
+	private void input(String input, Deque<Integer> operands, Queue<String> operators) {
 		if(input == null) {
 			Scanner scanner = new Scanner(System.in);
 			input = scanner.nextLine();
@@ -33,47 +42,16 @@ public class StringCalculator {
 
 		String[] values = input.split(" ");
 		for (String value : values) {
-			separator(value);
+			separator(value, operands, operators);
 		}
 	}
 
-	private void separator(String value) {
-		if(op.contains(value)) {
+	private void separator(String value, Deque<Integer> operands, Queue<String> operators) {
+		if(operator.contains(value)) {
 			operators.add(value);
 			return;
 		}
-
 		operands.addLast(Integer.parseInt(value));
-	}
-
-	private Integer calculate() {
-		Integer a;
-		Integer b;
-		Integer result;
-		String op;
-		while(!operators.isEmpty()) {
-			op = operators.poll();
-
-			a = operands.pollFirst();
-			b = operands.pollFirst();
-
-			operands.addFirst(binaryOperate(a, b, op));
-		}
-
-		return operands.pollFirst();
-	}
-
-	private Integer binaryOperate(Integer a, Integer b, String op) {
-		if(op.equals("+")) {
-			return a + b;
-		}
-		if(op.equals("-")) {
-			return a - b;
-		}
-		if(op.equals("*")) {
-			return a * b;
-		}
-		return a / b;
 	}
 
 }
