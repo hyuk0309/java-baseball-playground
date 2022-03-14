@@ -1,15 +1,24 @@
 package stringcalculator;
 
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
 
 public class StringCalculator {
 
-	private final String[] operator = {"+", "-", "*", "/"};
+	private final Set<String> op = new HashSet<>();
 	private final Deque<Integer> operands = new LinkedList<>();
 	private final Queue<String> operators = new LinkedList<>();
+
+	public StringCalculator() {
+		op.add("+");
+		op.add("-");
+		op.add("*");
+		op.add("/");
+	}
 
 	public Integer calculateString(String input) {
 		input(input);
@@ -24,26 +33,23 @@ public class StringCalculator {
 
 		String[] values = input.split(" ");
 		for (String value : values) {
-			if(isOperation(value)) {
-				operators.add(value);
-			} else {
-				operands.addLast(Integer.parseInt(value));
-			}
+			separator(value);
 		}
 	}
 
-	private boolean isOperation(String value) {
-		for(String op : operator) {
-			if(value.equals(op)) {
-				return true;
-			}
+	private void separator(String value) {
+		if(op.contains(value)) {
+			operators.add(value);
+			return;
 		}
-		return false;
+
+		operands.addLast(Integer.parseInt(value));
 	}
 
 	private Integer calculate() {
 		Integer a;
 		Integer b;
+		Integer result;
 		String op;
 		while(!operators.isEmpty()) {
 			op = operators.poll();
@@ -51,33 +57,23 @@ public class StringCalculator {
 			a = operands.pollFirst();
 			b = operands.pollFirst();
 
-			if(op.equals("+")) {
-				operands.addFirst(add(a, b));
-			} else if(op.equals("-")) {
-				operands.addFirst(subtract(a, b));
-			} else if(op.equals("*")) {
-				operands.addFirst(multiply(a, b));
-			} else {
-				operands.addFirst(divide(a, b));
-			}
+			operands.addFirst(binaryOperate(a, b, op));
 		}
 
 		return operands.pollFirst();
 	}
 
-	private Integer add(int i, int j) {
-		return i + j;
+	private Integer binaryOperate(Integer a, Integer b, String op) {
+		if(op.equals("+")) {
+			return a + b;
+		}
+		if(op.equals("-")) {
+			return a - b;
+		}
+		if(op.equals("*")) {
+			return a * b;
+		}
+		return a / b;
 	}
 
-	private Integer subtract(int i, int j) {
-		return i - j;
-	}
-
-	private Integer multiply(int i, int j) {
-		return i * j;
-	}
-
-	private Integer divide(int i, int j) {
-		return i / j;
-	}
 }
