@@ -21,7 +21,7 @@ class RandomNumGeneratorTest {
         //when
         String randomNum = randomNumGenerator.generateRandomNum();
         Set<Integer> set = new HashSet<>();
-        for(int i = 0; i < randomNum.length(); ++i) {
+        for (int i = 0; i < randomNum.length(); ++i) {
             set.add(Character.getNumericValue(randomNum.charAt(i)));
         }
 

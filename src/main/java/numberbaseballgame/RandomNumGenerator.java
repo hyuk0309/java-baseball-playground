@@ -33,7 +33,7 @@ public class RandomNumGenerator {
     }
 
     private boolean validateRange(int randomNum) {
-        if(randomNum == 0) {
+        if (randomNum == 0) {
             return false;
         }
         return true;
