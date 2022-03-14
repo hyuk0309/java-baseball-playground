@@ -51,7 +51,7 @@ public class StringTest {
     @RepeatedTest(value = 3, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     void charAt() {
         //given
-        int randomIdx = (int)(Math.random() * 10) % 3;
+        int randomIdx = (int) (Math.random() * 10) % 3;
         char[] charArr = "abc".toCharArray();
 
         //when
