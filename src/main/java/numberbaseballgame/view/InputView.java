@@ -21,17 +21,17 @@ public class InputView {
     }
 
     private void validateRange(String input) {
-        if(input.contains("0")) {
+        if (input.contains("0")) {
             throw new IllegalStateException("난수에 0이 포함되었습니다.");
         }
     }
 
     private void validateDuplicate(String input) {
         Set<Character> set = input.chars()
-            .mapToObj(num -> (char)num)
+            .mapToObj(num -> (char) num)
             .collect(Collectors.toSet());
 
-        if(set.size() != 3) {
+        if (set.size() != 3) {
             throw new IllegalStateException("난수에 중복이 있습니다.");
         }
     }

@@ -34,11 +34,11 @@ public class BaseballGame {
             gameResult = compare.compareNum(randomNum, userInput);
             resultView.output(gameResult);
 
-        } while(!isGameFinish(gameResult));
+        } while (!isGameFinish(gameResult));
     }
 
     private boolean isGameFinish(GameResult gameResult) {
-        if(gameResult.getStrike() == 3) {
+        if (gameResult.getStrike() == 3) {
             return true;
         }
         return false;
