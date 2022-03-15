@@ -1,26 +1,36 @@
 package numberbaseballgame;
 
+import numberbaseballgame.View.InputView;
+import numberbaseballgame.View.ResultView;
+
 public class BaseballGame {
 
-    private View view = new View();
+    private InputView inputView = new InputView();
+    private ResultView resultView = new ResultView();
     private RandomNumGenerator randomNumGenerator = new RandomNumGenerator();
 
+    public static void main(String[] args) {
+        BaseballGame baseballGame = new BaseballGame();
+        baseballGame.start();
+    }
 
     public void start() {
         do {
             String randomNum = randomNumGenerator.generateRandomNum();
 
-            while(true) {
-                String userInput = view.input();
-                GameResult gameResult = compareNum(randomNum, userInput);
-                view.output(gameResult);
+            System.out.println(randomNum);
 
-                if(gameResult.getStrike() == 3) {
+            while (true) {
+                String userInput = inputView.input();
+                GameResult gameResult = compareNum(randomNum, userInput);
+                resultView.output(gameResult);
+
+                if (gameResult.getStrike() == 3) {
                     break;
                 }
             }
-            view.askRestart();
-        } while(view.restart());
+            resultView.askRestart();
+        } while (inputView.restart());
     }
 
     public GameResult compareNum(String randomNum, String userInput) {

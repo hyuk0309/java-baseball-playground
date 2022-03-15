@@ -1,16 +1,8 @@
-package numberbaseballgame;
+package numberbaseballgame.View;
 
-import java.util.Scanner;
+import numberbaseballgame.GameResult;
 
-public class View {
-
-    private Scanner scanner = new Scanner(System.in);
-
-    public String input() {
-        System.out.println("숫자를 입력해 주세요 : ");
-        String input = scanner.nextLine();
-        return input;
-    }
+public class ResultView {
 
     public void output(GameResult gameResult) {
         if(gameResult.getStrike() == 3) {
@@ -36,11 +28,4 @@ public class View {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
     }
 
-    public boolean restart() {
-        int input = scanner.nextInt();
-        if(input == 1) {
-            return true;
-        }
-        return false;
-    }
 }
