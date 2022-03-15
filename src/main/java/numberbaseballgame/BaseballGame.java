@@ -20,8 +20,6 @@ public class BaseballGame {
         do {
             String randomNum = randomNumGenerator.generateRandomNum();
 
-            System.out.println("randomNum=" + randomNum);
-
             gameStart(randomNum);
 
             resultView.askRestart();
