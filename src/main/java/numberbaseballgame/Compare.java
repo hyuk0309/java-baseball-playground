@@ -1,42 +1,35 @@
 package numberbaseballgame;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.IntStream;
+
 public class Compare {
 
     public GameResult compareNum(String randomNum, String userInput) {
-        char[] randomNums = randomNum.toCharArray();
-        char[] userNums = userInput.toCharArray();
 
-        int strike = countStrike(randomNums, userNums);
-        int ball = countBall(randomNums, userNums);
+        int strike = countStrike(randomNum, userInput);
+        int ball = countBall(randomNum, userInput);
 
         return new GameResult(strike, ball);
     }
 
-    private int countBall(char[] randomNums, char[] userNums) {
-
-        int ball = 0;
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                if (i == j) {
-                    continue;
-                }
-                if (userNums[i] == randomNums[j]) {
-                    ball++;
-                    break;
-                }
-            }
+    private int countBall(String randomNums, String userNums) {
+        Set<Character> set = new HashSet<>();
+        for (int i = 0; i < randomNums.length(); ++i) {
+            set.add(randomNums.charAt(i));
         }
-        return ball;
+
+        return (int) IntStream.range(0, 3)
+            .filter(idx ->
+                (set.contains(userNums.charAt(idx)) && (userNums.charAt(idx) != randomNums.charAt(
+                    idx))))
+            .count();
     }
 
-    private int countStrike(char[] randomNums, char[] userNums) {
-        int strike = 0;
-
-        for (int i = 0; i < 3; ++i) {
-            if (randomNums[i] == userNums[i]) {
-                strike++;
-            }
-        }
-        return strike;
+    private int countStrike(String randomNums, String userNums) {
+        return (int) IntStream.range(0, 3)
+            .filter(idx -> randomNums.charAt(idx) == userNums.charAt(idx))
+            .count();
     }
 }
