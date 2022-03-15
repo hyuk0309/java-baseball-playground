@@ -17,7 +17,7 @@ public class View {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return;
         }
-        if(gameResult.getBall() == 0) {
+        if(gameResult.getBall() == 0 && gameResult.getStrike() == 0) {
             System.out.println("낫싱");
             return;
         }
