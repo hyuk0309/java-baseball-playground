@@ -8,6 +8,7 @@ public class BaseballGame {
     private InputView inputView = new InputView();
     private ResultView resultView = new ResultView();
     private RandomNumGenerator randomNumGenerator = new RandomNumGenerator();
+    private Compare compare = new Compare();
 
     public static void main(String[] args) {
         BaseballGame baseballGame = new BaseballGame();
@@ -18,58 +19,26 @@ public class BaseballGame {
         do {
             String randomNum = randomNumGenerator.generateRandomNum();
 
-            System.out.println(randomNum);
+            gameStart(randomNum);
 
-            while (true) {
-                String userInput = inputView.input();
-                GameResult gameResult = compareNum(randomNum, userInput);
-                resultView.output(gameResult);
-
-                if (gameResult.getStrike() == 3) {
-                    break;
-                }
-            }
             resultView.askRestart();
         } while (inputView.restart());
     }
 
-    public GameResult compareNum(String randomNum, String userInput) {
-        char[] randomNums = randomNum.toCharArray();
-        char[] userNums = userInput.toCharArray();
+    private void gameStart(String randomNum) {
+        GameResult gameResult;
+        do {
+            String userInput = inputView.input();
+            gameResult = compare.compareNum(randomNum, userInput);
+            resultView.output(gameResult);
 
-        int strike = countStrike(randomNums, userNums);
-        int ball = countBall(randomNums, userNums);
-
-        return new GameResult(strike, ball);
+        } while(isGameFinish(gameResult));
     }
 
-    private int countBall(char[] randomNums, char[] userNums) {
-
-        int ball = 0;
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                if (i == j) {
-                    continue;
-                }
-                if (userNums[i] == randomNums[j]) {
-                    ball++;
-                    break;
-                }
-            }
+    private boolean isGameFinish(GameResult gameResult) {
+        if(gameResult.getStrike() == 3) {
+            return true;
         }
-        return ball;
+        return false;
     }
-
-    private int countStrike(char[] randomNums, char[] userNums) {
-        int strike = 0;
-
-        for (int i = 0; i < 3; ++i) {
-            if (randomNums[i] == userNums[i]) {
-                strike++;
-            }
-        }
-        return strike;
-    }
-
-
 }
