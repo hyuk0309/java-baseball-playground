@@ -4,6 +4,10 @@ import numberbaseballgame.GameResult;
 
 public class ResultView {
 
+    public void askNumber() {
+        System.out.print("숫자를 입력해 주세요 : ");
+    }
+
     public void output(GameResult gameResult) {
         if(gameResult.getStrike() == 3) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");

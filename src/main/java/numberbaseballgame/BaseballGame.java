@@ -19,6 +19,8 @@ public class BaseballGame {
         do {
             String randomNum = randomNumGenerator.generateRandomNum();
 
+            System.out.println("randomNum=" + randomNum);
+
             gameStart(randomNum);
 
             resultView.askRestart();
@@ -32,7 +34,7 @@ public class BaseballGame {
             gameResult = compare.compareNum(randomNum, userInput);
             resultView.output(gameResult);
 
-        } while(isGameFinish(gameResult));
+        } while(!isGameFinish(gameResult));
     }
 
     private boolean isGameFinish(GameResult gameResult) {

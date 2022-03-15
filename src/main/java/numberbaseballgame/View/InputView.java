@@ -6,9 +6,7 @@ public class InputView {
 
     private Scanner scanner;
 
-    public String input() {
-        System.out.println("숫자를 입력해 주세요 : ");
-
+    public String inputNumber() {
         scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         return input;
