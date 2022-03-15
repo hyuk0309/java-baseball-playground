@@ -3,6 +3,7 @@ package numberbaseballgame;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.IntStream;
+import numberbaseballgame.model.GameResult;
 
 public class Compare {
 

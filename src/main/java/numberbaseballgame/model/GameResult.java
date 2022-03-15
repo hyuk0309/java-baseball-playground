@@ -1,4 +1,4 @@
-package numberbaseballgame;
+package numberbaseballgame.model;
 
 public class GameResult {
 

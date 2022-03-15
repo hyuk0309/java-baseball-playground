@@ -1,7 +1,8 @@
 package numberbaseballgame;
 
-import numberbaseballgame.View.InputView;
-import numberbaseballgame.View.ResultView;
+import numberbaseballgame.view.InputView;
+import numberbaseballgame.view.ResultView;
+import numberbaseballgame.model.GameResult;
 
 public class BaseballGame {
 
@@ -30,7 +31,8 @@ public class BaseballGame {
     private void gameStart(String randomNum) {
         GameResult gameResult;
         do {
-            String userInput = inputView.input();
+            resultView.askNumber();
+            String userInput = inputView.inputNumber();
             gameResult = compare.compareNum(randomNum, userInput);
             resultView.output(gameResult);
 

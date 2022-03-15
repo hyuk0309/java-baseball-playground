@@ -1,4 +1,4 @@
-package numberbaseballgame.View;
+package numberbaseballgame.view;
 
 import java.util.Scanner;
 

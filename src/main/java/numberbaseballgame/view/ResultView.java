@@ -1,6 +1,6 @@
-package numberbaseballgame.View;
+package numberbaseballgame.view;
 
-import numberbaseballgame.GameResult;
+import numberbaseballgame.model.GameResult;
 
 public class ResultView {
 
