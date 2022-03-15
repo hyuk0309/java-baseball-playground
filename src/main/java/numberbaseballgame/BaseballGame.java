@@ -5,15 +5,23 @@ public class BaseballGame {
     private View view = new View();
     private RandomNumGenerator randomNumGenerator = new RandomNumGenerator();
 
-    /*
+
     public void start() {
         do {
             String randomNum = randomNumGenerator.generateRandomNum();
 
-            String userInput = view.input();
-            GameResult gameResult = compareNum(randomNum, userInput);
-        } while()
-    }*/
+            while(true) {
+                String userInput = view.input();
+                GameResult gameResult = compareNum(randomNum, userInput);
+                view.output(gameResult);
+
+                if(gameResult.getStrike() == 3) {
+                    break;
+                }
+            }
+            view.askRestart();
+        } while(view.restart());
+    }
 
     public GameResult compareNum(String randomNum, String userInput) {
         char[] randomNums = randomNum.toCharArray();

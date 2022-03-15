@@ -35,4 +35,12 @@ public class View {
     public void askRestart() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
     }
+
+    public boolean restart() {
+        int input = scanner.nextInt();
+        if(input == 1) {
+            return true;
+        }
+        return false;
+    }
 }
