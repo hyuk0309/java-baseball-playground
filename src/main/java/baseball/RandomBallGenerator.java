@@ -1,7 +1,7 @@
 package baseball;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class RandomBallGenerator {
 
@@ -24,7 +24,11 @@ public class RandomBallGenerator {
         return MIN_RANGE <= no && no <= MAX_RANGE;
     }
 
-    public static boolean validateDuplicate(List<Ball> balls, Ball ball) {
-        return !balls.contains(ball);
+    public static Balls generateRandomBalls() {
+        Set<Ball> balls = new HashSet<>();
+        while (balls.size() < 3) {
+            balls.add(generateRandomBall());
+        }
+        return new Balls(balls);
     }
 }
