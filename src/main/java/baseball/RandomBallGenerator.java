@@ -24,4 +24,7 @@ public class RandomBallGenerator {
         return MIN_RANGE <= no && no <= MAX_RANGE;
     }
 
+    public static boolean validateDuplicate(List<Ball> balls, Ball ball) {
+        return !balls.contains(ball);
+    }
 }
