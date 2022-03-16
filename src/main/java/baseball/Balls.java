@@ -25,4 +25,8 @@ public class Balls {
         }
         return BallStatus.NOTHING;
     }
+
+    public Ball bringBall(int position) {
+        return balls.get(position);
+    }
 }
