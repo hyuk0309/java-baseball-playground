@@ -1,5 +1,6 @@
 package baseball;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RandomBallGenerator {
@@ -7,20 +8,20 @@ public class RandomBallGenerator {
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 9;
 
-    public int generateRandomBall() {
-        int randomBall;
+    public static Ball generateRandomBall() {
+        return new Ball(generateRandomNo());
+    }
+
+    public static int generateRandomNo() {
+        int no;
         do {
-            randomBall = (int) (Math.random() * 10) % 10;
-        } while (!validateRange(randomBall));
-        return randomBall;
+            no = (int) (Math.random() * 10) % 10;
+        } while (!validateRange(no));
+        return no;
     }
 
-    private boolean validateRange(int randomBall) {
-        return MIN_RANGE <= randomBall && randomBall <= MAX_RANGE;
-    }
-
-    public boolean validateDuplicate(List<Integer> balls, int ball) {
-        return !balls.contains(ball);
+    private static boolean validateRange(int no) {
+        return MIN_RANGE <= no && no <= MAX_RANGE;
     }
 
 }
