@@ -15,4 +15,14 @@ public class Balls {
     public int count() {
         return balls.size();
     }
+
+    public BallStatus play(int position, Ball ball) {
+        if (balls.get(position).equals(ball)) {
+            return BallStatus.STRIKE;
+        }
+        if (!balls.get(position).equals(ball) && balls.contains(ball)) {
+            return BallStatus.BALL;
+        }
+        return BallStatus.NOTHING;
+    }
 }
