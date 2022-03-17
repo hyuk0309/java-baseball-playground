@@ -6,8 +6,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    public List<Integer> inputNumbers() {
-        Scanner scanner = new Scanner(System.in);
+    public List<Integer> inputNumbers(Scanner scanner) {
         String numbersString = scanner.nextLine();
 
         validateRegex(numbersString);
@@ -38,8 +37,7 @@ public class InputView {
         }
     }
 
-    public boolean inputToRestartQuery() {
-        Scanner scanner = new Scanner(System.in);
+    public boolean inputToRestartQuery(Scanner scanner) {
         int restart = scanner.nextInt();
 
         if (restart == 1) {
