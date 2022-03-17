@@ -16,6 +16,10 @@ public class ResultView {
         if (gameResult.countStrike() > 0) {
             resultMsg += String.valueOf(gameResult.countStrike()) + "스트라이크";
         }
+        if(resultMsg.isEmpty()) {
+            resultMsg = "낫씽";
+        }
+
         System.out.println(resultMsg);
     }
 
