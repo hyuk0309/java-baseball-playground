@@ -33,8 +33,22 @@ public class InputView {
             .boxed()
             .collect(Collectors.toSet())
             .size();
-        if(numberCount != 3) {
+        if (numberCount != 3) {
             throw new IllegalStateException("숫자에 중복이 없게 입력해주세요.");
         }
     }
+
+    public boolean inputToRestartQuery() {
+        Scanner scanner = new Scanner(System.in);
+        int restart = scanner.nextInt();
+
+        if (restart == 1) {
+            return true;
+        }
+        if (restart == 2) {
+            return false;
+        }
+        throw new IllegalStateException("1 또는 2를 입력해주세요.");
+    }
+
 }

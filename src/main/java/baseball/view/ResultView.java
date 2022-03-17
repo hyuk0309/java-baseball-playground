@@ -10,10 +10,10 @@ public class ResultView {
 
     public void printGameResult(GameResult gameResult) {
         String resultMsg = "";
-        if(gameResult.countBall() > 0) {
+        if (gameResult.countBall() > 0) {
             resultMsg += String.valueOf(gameResult.countBall()) + "볼 ";
         }
-        if(gameResult.countStrike() > 0) {
+        if (gameResult.countStrike() > 0) {
             resultMsg += String.valueOf(gameResult.countStrike()) + "스트라이크";
         }
         System.out.println(resultMsg);
