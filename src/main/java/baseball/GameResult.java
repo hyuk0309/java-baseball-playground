@@ -21,4 +21,11 @@ public class GameResult {
             ball++;
         }
     }
+
+    public boolean isGameEnd() {
+        if(strike == 3) {
+            return true;
+        }
+        return false;
+    }
 }
