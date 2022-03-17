@@ -3,8 +3,11 @@ package baseball;
 import static org.assertj.core.api.Assertions.*;
 
 
+import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,6 +57,21 @@ class BallsTest {
 
         //then
         assertThat(result).isEqualTo(BallStatus.BALL);
+    }
+
+    @DisplayName("사용자의 입력 -> balls 객체로 변환")
+    @Test
+    void creatBallByUser() {
+        //given
+        List<Integer> numbers = Arrays.asList(1, 2, 3);
+
+        //when
+        Balls balls = Balls.createBalls(numbers);
+
+        //then
+        assertThat(balls.bringBall(0)).isEqualTo(new Ball(1));
+        assertThat(balls.bringBall(1)).isEqualTo(new Ball(2));
+        assertThat(balls.bringBall(2)).isEqualTo(new Ball(3));
     }
 
 }
